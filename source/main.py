@@ -25,7 +25,15 @@ class Home:
         self.right.place(x = 0, y = 0 )
         self.bg_label1 = Label(self.right, image=self.background1)
         self.bg_label1.place(x=0, y=0, relwidth=1, relheight=1)
+        self.logo_image = Image.open('C:/Users/Naga Sai/OneDrive/Desktop/Project/assests/tt.png')
+        self.logo_image = self.logo_image.resize((150, 150))  # Adjust size as needed
 
+        # Convert the logo image to a format compatible with Tkinter
+        self.logo_photo = ImageTk.PhotoImage(self.logo_image)
+
+        # Create a Label widget to display the logo
+        self.logo_label = Label(self.right, image=self.logo_photo)
+        self.logo_label.place(x=225, y=60)
         
         
 
@@ -51,7 +59,15 @@ class Home:
         self.bg_label2 = Label(self.left, image=self.background2)
         self.bg_label2.place(x=0, y=0, relwidth=1, relheight=1)
 
+        self.logo_im = Image.open('C:/Users/Naga Sai/OneDrive/Desktop/Project/assests/stud.png')
+        self.logo_im = self.logo_im.resize((150, 150))  # Adjust size as needed
 
+        # Convert the logo image to a format compatible with Tkinter
+        self.logo_pho = ImageTk.PhotoImage(self.logo_im)
+
+        # Create a Label widget to display the logo
+        self.logo_lab = Label(self.left, image=self.logo_pho)
+        self.logo_lab.place(x=225, y=60)
 
         self.student_name = Label(self.left, text = 'STUDENT ID', fg ='Black', font = fonts,width = 10)
         self.student_name.place(x = 70, y = 250)
