@@ -1,10 +1,10 @@
-from tkinter import Tk, Frame, Label, Entry, Button, messagebox
+from tkinter import Tk, Frame, Label, Entry, Button, messagebox,PhotoImage
 from PIL import Image, ImageTk
 from mysql.connector import connect
 from tabulate import tabulate
 
 
-fonts = ('Courier New', 12, 'bold')
+fonts = ('Times new Roman', 16, 'bold')
 admin = 'SVECW@9504'
 password = 'priya'
 student = '29'
@@ -13,36 +13,60 @@ root = Tk()
 class Home:
     def __init__(self, root):
         self.root = root
+        bg1= Image.open("C:/Users/Naga Sai/OneDrive/Desktop/Project/assests/class3.jpg")
+        self.background1 = ImageTk.PhotoImage(bg1)
+        bg2 = Image.open("C:/Users/Naga Sai/OneDrive/Desktop/Project/assests/class3.jpg")
+        self.background2 = ImageTk.PhotoImage(bg2)
+
+        
+        
+
         self.right =Frame(self.root, width = 599, height = 600)
         self.right.place(x = 0, y = 0 )
-        self.admin_name = Label(self.right, text = 'FACULTY ID',width = 10, bg = 'steel blue', fg ='white', font = fonts)
-        self.admin_name.place(x = 60, y = 200)
+        self.bg_label1 = Label(self.right, image=self.background1)
+        self.bg_label1.place(x=0, y=0, relwidth=1, relheight=1)
+
+        
+        
+
+        
+        self.admin_name = Label(self.right, text='FACULTY ID', width=10, fg='black', font=fonts)
+        self.admin_name.place(x=70, y=250)
+
+
         self.admin_name_entry = Entry(self.right, width = 18,font = fonts)
-        self.admin_name_entry.place(x = 200, y = 200)
+        self.admin_name_entry.place(x = 220, y = 250)
 
-        self.admin_pass = Label(self.right, text = 'PASSWORD', width = 10,bg = 'steel blue', fg ='white', font = fonts)
-        self.admin_pass.place(x = 60, y = 250)
+        self.admin_pass = Label(self.right, text = 'PASSWORD', width = 10, fg ='black', font = fonts)
+        self.admin_pass.place(x = 70, y = 300)
         self.admin_pass_entry = Entry(self.right, width = 18, font = fonts)
-        self.admin_pass_entry.place(x = 200, y = 250)
+        self.admin_pass_entry.place(x = 220, y = 300)
 
-        self.admin_login_btn = Button(self.right, text = 'LOGIN', font = fonts, command = self.admin_login)
-        self.admin_login_btn.place(x = 175, y = 350)
+        self.admin_login_btn = Button(self.right, text = 'LOGIN', fg = 'white',bg='green',font = fonts, command = self.admin_login)
+        self.admin_login_btn.place(x = 185, y = 370)
 
 
-        self.left =Frame(self.root, width = 599, height = 600,bg = 'pink')
+        self.left =Frame(self.root, width = 599, height = 600)
         self.left.place(x = 600, y = 0 )
-        self.student_name = Label(self.left, text = 'STUDENT ID', bg = 'steel blue', fg ='white', font = fonts,width = 10)
-        self.student_name.place(x = 60, y = 200)
+        self.bg_label2 = Label(self.left, image=self.background2)
+        self.bg_label2.place(x=0, y=0, relwidth=1, relheight=1)
+
+
+
+        self.student_name = Label(self.left, text = 'STUDENT ID', fg ='Black', font = fonts,width = 10)
+        self.student_name.place(x = 70, y = 250)
+
         self.student_name_entry = Entry(self.left, width = 18, font = fonts)
-        self.student_name_entry.place(x = 200, y = 200)
+        self.student_name_entry.place(x = 220, y = 250)
 
-        self.student_pass = Label(self.left, text = 'PASSWORD', bg = 'steel blue', fg ='white', font = fonts, width = 10)
-        self.student_pass.place(x = 60, y = 250)
+        self.student_pass = Label(self.left, text = 'PASSWORD', fg ='black', font = fonts, width = 10)
+        self.student_pass.place(x = 70, y = 300)
         self.student_pass_entry = Entry(self.left, width = 18, font = fonts)
-        self.student_pass_entry.place(x = 200, y = 250)
+        self.student_pass_entry.place(x = 220, y = 300)
 
-        self.student_login_btn = Button(self.left, text = 'LOGIN', font = fonts, command = self.student_login)
-        self.student_login_btn.place(x = 175, y = 350)
+        self.student_login_btn = Button(self.left, text='LOGIN', fg='white', bg='green', font=fonts, command=self.student_login)
+        self.student_login_btn.place(x=185, y=370)
+
     
     def admin_login(self):
         global admin, password
@@ -83,8 +107,17 @@ class Home:
                 self.right.destroy()
                 self.left.destroy()
                 student_obj = Student(root)
-                self.middle = Frame(self.root,width = 1200,height = 600, bg = 'green')
+                self.middle = Frame(self.root,width = 1200,height = 600)
                 self.middle.place(x = 0,y=0)
+                bg_image = Image.open('C:/Users/Naga Sai/OneDrive/Desktop/Project/assests/hhhhh.png')
+                # Optionally, resize the background image to fit the frame
+                bg_image = bg_image.resize((1200, 600))
+                # Convert the background image to a format compatible with Tkinter
+                self.bg_photo = ImageTk.PhotoImage(bg_image)
+                # Create a Label widget to display the background image
+                self.bg_label = Label(self.middle, image=self.bg_photo)
+                self.bg_label.place(x=0, y=0, relwidth=1, relheight=1)
+
                 self.student_btn = Button(self.middle, text = 'PROVIDE FEEDBACK', font = fonts,width=20,height = 5,command = self.stud_feed)
                 self.student_btn.place(x = 500, y = 200)
 
