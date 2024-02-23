@@ -2,6 +2,7 @@ from tkinter import Tk, Frame, Label, Entry, Button, messagebox,PhotoImage
 from PIL import Image, ImageTk
 from mysql.connector import connect
 from tabulate import tabulate
+import sqlite3
 
 
 fonts = ('Times new Roman', 16, 'bold')
@@ -85,22 +86,25 @@ class Home:
 
     
     def admin_login(self):
-        global admin, password
+        global admin
         self.a_name = self.admin_name_entry.get()
         self.a_pass = self.admin_pass_entry.get()
-        if self.a_name == admin:
-            if self.a_pass == password:
-                self.right.destroy()
-                self.left.destroy()
-                admin_obj = Admin(root)
-                self.middle = Frame(self.root,width = 1200,height = 600, bg = 'red')
-                self.middle.place(x = 0,y=0)
-                self.faculty_btn = Button(self.middle, text = 'VIEW FEEDBACK', font = fonts,command = self.faculty_feed,width = 20,height=5)
-                self.faculty_btn.place(x = 500, y = 200)
-            else:
-                messagebox.showerror('INVALID','PASSWORD INCORRECT')
+        # Connect to the SQLite database
+        conn = sqlite3.connect('C:/Users/Naga Sai/OneDrive/Desktop/Project/feed3.db')
+        c = conn.cursor()
+        # Query the faculty table to check admin credentials
+        c.execute("SELECT * FROM faculty WHERE faculty_id = ? AND password = ?", (self.a_name, self.a_pass))
+        result = c.fetchone()
+        if result:  # If the result is not None, credentials are valid
+            self.right.destroy()
+            self.left.destroy()
+            admin_obj = Admin(root)
+            self.middle = Frame(self.root, width=1200, height=600, bg='red')
+            self.middle.place(x=0, y=0)
+            self.faculty_btn = Button(self.middle, text='VIEW FEEDBACK', font=fonts, command=self.faculty_feed, width=20,height=5)
+            self.faculty_btn.place(x=500, y=200)
         else:
-                messagebox.showerror('INVALID','ID INVALID')
+            messagebox.showerror('INVALID', 'ID or PASSWORD INCORRECT')
     def faculty_feed(self):
         self.middle = Frame(self.root,width = 1200,height = 600, bg = 'violet')
         self.middle.place(x = 0,y=0)
@@ -118,29 +122,29 @@ class Home:
         global student, studpass
         self.b_name = self.student_name_entry.get()
         self.b_pass = self.student_pass_entry.get()
-        if self.b_name == student:
-            if self.b_pass == studpass:
-                self.right.destroy()
-                self.left.destroy()
-                student_obj = Student(root)
-                self.middle = Frame(self.root,width = 1200,height = 600)
-                self.middle.place(x = 0,y=0)
-                bg_image = Image.open('C:/Users/Naga Sai/OneDrive/Desktop/Project/assests/hhhhh.png')
-                # Optionally, resize the background image to fit the frame
-                bg_image = bg_image.resize((1200, 600))
+        conn = sqlite3.connect('C:/Users/Naga Sai/OneDrive/Desktop/Project/feed3.db')
+        c = conn.cursor()
+        c.execute("SELECT * FROM students WHERE student_id = ? AND password = ?", (self.b_name,self.b_pass))
+        result = c.fetchone()
+        if result:
+            self.right.destroy()
+            self.left.destroy()
+            student_obj = Student(root)
+            self.middle = Frame(self.root,width = 1200,height = 600)
+            self.middle.place(x = 0,y=0)
+            bg_image = Image.open('C:/Users/Naga Sai/OneDrive/Desktop/Project/assests/hhhhh.png')
+            # Optionally, resize the background image to fit the frame
+            bg_image = bg_image.resize((1200, 600))
                 # Convert the background image to a format compatible with Tkinter
-                self.bg_photo = ImageTk.PhotoImage(bg_image)
+            self.bg_photo = ImageTk.PhotoImage(bg_image)
                 # Create a Label widget to display the background image
-                self.bg_label = Label(self.middle, image=self.bg_photo)
-                self.bg_label.place(x=0, y=0, relwidth=1, relheight=1)
+            self.bg_label = Label(self.middle, image=self.bg_photo)
+            self.bg_label.place(x=0, y=0, relwidth=1, relheight=1)
 
-                self.student_btn = Button(self.middle, text = 'PROVIDE FEEDBACK', font = fonts,width=20,height = 5,command = self.stud_feed)
-                self.student_btn.place(x = 500, y = 200)
-
-            else:
-                messagebox.showerror('INVALID','PASSWORD INCORRECT')
+            self.student_btn = Button(self.middle, text = 'PROVIDE FEEDBACK', font = fonts,width=20,height = 5,command = self.stud_feed)
+            self.student_btn.place(x = 500, y = 200)
         else:
-            messagebox.showerror('INVALID','ID INVALID')        
+            messagebox.showerror('INVALID','ID or PASSWORD INCORRECT')        
     def stud_feed(self):
         self.middle.destroy()
         stud_obj = Stud(root)
