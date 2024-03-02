@@ -123,8 +123,6 @@ class Home:
             feedback_data = c.fetchall()
 
     # Create a new window to display the feedback in a TreeVie
-            '''self.middle3 = Frame(self.root,width = 1200,height = 600)
-            self.middle3.place(x = 0,y=0)'''
             self.middle = Toplevel(root)
             self.middle.title("Feedback for SE")
             self.middle.geometry("500x500")
@@ -181,13 +179,7 @@ class Home:
         self.faculty_btn.place(x=550, y=400)
 
     def ok_button_callback(self):
-    # This function is called when the "OK" button is clicked
-    # Destroy the frame containing the feedback and the "OK" button
         self.middle.destroy()
-
-    
-        
-        
 
     def student_login(self):
         global student, studpass
@@ -313,11 +305,6 @@ def submit_feedback(subject, feedback):
     c.execute("INSERT INTO feedback (subject, feedback) VALUES (?, ?)", (subject, feedback))
     conn.commit()
     conn.close()
-'''if _name_ == "_main_":
-    root = Tk()
-    root.resizable(False,False)
-    app = MY-APP(root)
-    root.mainloop()'''
 root.geometry('1200x600+120+80')
 root.title('MY-APP')
 home = Home(root)
