@@ -87,7 +87,6 @@ class Home:
 
     
     def admin_login(self):
-        global admin
         self.a_name = self.admin_name_entry.get()
         self.a_pass = self.admin_pass_entry.get()
         # Connect to the SQLite database
@@ -119,7 +118,7 @@ class Home:
     # Retrieve feedback for the specified subject from the database
             conn = sqlite3.connect('C:/Users/Naga Sai/OneDrive/Desktop/Project/feed6.db')
             c = conn.cursor()
-            c.execute("SELECT * FROM feedback WHERE subject = 'SE'")
+            c.execute("SELECT * FROM feedback WHERE subject = 'UHV'")
             feedback_data = c.fetchall()
 
     # Create a new window to display the feedback in a TreeVie
@@ -128,18 +127,17 @@ class Home:
             self.middle.geometry("500x500")
             
             style = ttk.Style()
-            style.configure("Treeview.Heading",font=("Times New Roman",20))
-            style.configure("Treeview", font=("Times New Roman", 14))
+            style.configure("Treeview.Heading",font=("Times New Roman",20),foreground="Blue")
+            style.configure("Treeview", font=("Times New Roman", 14),padding=(10,5))
     # Create a TreeView widget
             tree = ttk.Treeview(self.middle, columns=("Feedback"), show="headings")
-            tree.heading("Feedback", text="Feedback")
+            tree.heading("Feedback", text="Feedback of AIML-A")
 
     # Insert feedback data into the TreeView
             for feedback in feedback_data:
                 tree.insert("", "end", values=(feedback[2],))
 
     # Add the TreeView to the window
-            tree.pack(expand=True, fill="both")
 
     # Check if feedback exists for the subject
             if feedback_data:
@@ -156,7 +154,7 @@ class Home:
             conn.close()
         self.middle = Frame(self.root,width = 1200,height = 600)
         self.middle.place(x = 0,y=0)
-        bg_image2 = Image.open('C:/Users/Naga Sai/OneDrive/Desktop/Project/assests/bg2.png')
+        bg_image2 = Image.open('C:/Users/Naga Sai/OneDrive/Desktop/Project/assests/leafes.png')
     # Optionally, resize the background image to fit the frame
         bg_image2 = bg_image2.resize((1200, 600))
     # Convert the background image to a format compatible with Tkinter
@@ -166,23 +164,22 @@ class Home:
         self.bg_label2.place(x=0, y=0, relwidth=1, relheight=1)
 
     # Create the AIML_A button
-        aiml_a_btn = Button(self.middle, text='AIML_A', font=fonts, width=15, height=2,
+        aiml_a_btn = Button(self.middle, text='AIML-A', font=fonts, width=15, height=2,
                         command=display_feedback_aiml_a)
         aiml_a_btn.place(x=550, y=100)
 
     # Place other buttons as before
-        self.faculty_btn = Button(self.middle, text='AIML_B', font=fonts, width=15, height=2)
+        self.faculty_btn = Button(self.middle, text='AIML-B', font=fonts, width=15, height=2)
         self.faculty_btn.place(x=550, y=200)
-        self.faculty_btn = Button(self.middle, text='AIDS_A', font=fonts, width=15, height=2)
+        self.faculty_btn = Button(self.middle, text='AIDS-A', font=fonts, width=15, height=2)
         self.faculty_btn.place(x=550, y=300)
-        self.faculty_btn = Button(self.middle, text='AIDS_B', font=fonts, width=15, height=2)
+        self.faculty_btn = Button(self.middle, text='AIDS-B', font=fonts, width=15, height=2)
         self.faculty_btn.place(x=550, y=400)
 
     def ok_button_callback(self):
         self.middle.destroy()
 
     def student_login(self):
-        global student, studpass
         self.b_name = self.student_name_entry.get()
         self.b_pass = self.student_pass_entry.get()
         conn = sqlite3.connect('C:/Users/Naga Sai/OneDrive/Desktop/Project/feed6.db')
@@ -208,7 +205,6 @@ class Home:
             self.student_btn.place(x = 500, y = 200)
         else:
             messagebox.showerror('INVALID','ID or PASSWORD INCORRECT') 
-        from tkinter import PhotoImage
     def stud_feed(self):
     # Destroy the current frame
         self.middle.destroy()
@@ -217,7 +213,7 @@ class Home:
     # Create a new frame
         self.middle1 = Frame(self.root, width=1200, height=600)
         self.middle1.place(x=0, y=0)
-        bg_image = Image.open("C:/Users/Naga Sai/OneDrive/Desktop/Project/assests/sub.png")
+        bg_image = Image.open("C:/Users/Naga Sai/OneDrive/Desktop/Project/assests/appbo.png")
         bg_image = bg_image.resize((1200, 600))  # Resize the image to match the frame size
 
     # Convert the image to PhotoImage format
@@ -242,7 +238,7 @@ class Home:
             # Calculate the x and y coordinates for placing the buttons
                 x_coord = 200 + (i % 3) * 300  # Adjust the spacing by changing the values
                 y_coord = 200 + (i // 3) * 100  # Adjust the spacing by changing the values
-                button = Button(self.middle1, text=subject, font=fonts, width=15, height=2)
+                button = Button(self.middle1, text=subject, font=fonts, width=15, height=2,bg="white",fg="black")
                 button.place(x=x_coord, y=y_coord)
             # Bind each button to a function that handles the feedback for that subject
                 button.bind("<Button-1>", lambda event, subject=subject: self.handle_feedback(event, subject))
@@ -254,15 +250,15 @@ class Home:
         self.middle2.place(x=0,y=0)
 
     # Set background image for the window
-        bg_image = Image.open("C:/Users/Naga Sai/OneDrive/Desktop/Project/assests/p1.png")
+        bg_image = Image.open("C:/Users/Naga Sai/OneDrive/Desktop/Project/assests/books1.png")
         bg_image = bg_image.resize((1200, 600))  # Resize image to fit the window
         bg_photo = ImageTk.PhotoImage(bg_image)
         bg_label = Label(self.root, image=bg_photo)
         bg_label.place(x=0, y=0, relwidth=1, relheight=1)
         bg_label.image = bg_photo
         
-        feedback_entry = Text(self.root, wrap="word", width=25, height=8,font=("Times New Roman", 20))  # Smaller textbox size
-        feedback_entry.place(x=400, y=100)  # Adjust placement as needed
+        feedback_entry = Text(self.root, wrap="word", width=30, height=9,font=("Times New Roman", 20))  # Smaller textbox size
+        feedback_entry.place(x=600, y=100)  # Adjust placement as needed
 
     # Function to submit feedback
         def submit_feedback_to_db():
@@ -276,7 +272,7 @@ class Home:
 
     # Create a submit button with green color
         submit_button = Button(self.root, text="Submit Feedback",bg="green", fg="white", command=submit_feedback_to_db,font=("Helvetica", 16))
-        submit_button.place(x=480, y=400)  # Adjust placement as needed
+        submit_button.place(x=700, y=450)  # Adjust placement as needed
 
     # Keep a reference to the background image to prevent it from being garbage collected
 
@@ -293,12 +289,6 @@ class Student:
         self.root.title('STUDENT PAGE')
         self.right = Frame(self.root, width = 500, height = 300, bg = 'green')
         self.right.place(x = 0, y = 0)
-class Stud:
-    def __init__(self, root):
-        self.root = root
-        self.root.title('STUD PAGE')
-        self.right = Frame(self.root, width = 500, height = 300, bg = 'grey')
-        self.right.place(x = 0, y = 0)
 def submit_feedback(subject, feedback):
     conn = sqlite3.connect('C:/Users/Naga Sai/OneDrive/Desktop/Project/feed6.db')
     c = conn.cursor()
@@ -306,7 +296,7 @@ def submit_feedback(subject, feedback):
     conn.commit()
     conn.close()
 root.geometry('1200x600+120+80')
-root.title('MY-APP')
+root.title('ClassPulse')
 home = Home(root)
 root.mainloop()
 
