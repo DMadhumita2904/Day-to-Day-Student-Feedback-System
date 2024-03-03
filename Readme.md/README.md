@@ -67,9 +67,9 @@ This project is licensed under the [MIT License](https://gitlab.com/varshita.and
 
 - [Ch.Ranga Harika](https://gitlab.com/varshita.andvr)
 
- - [G. Nooka Ratnam](https://gitlab.com/varshita.andvr)
+- [G. Nooka Ratnam](https://gitlab.com/varshita.andvr)
 
 - [G. Niharika](https://gitlab.com/varshita.andvr)
 
-- [A.Sai Ratna Varshita](https://gitlab.com/Varshita Annadevara)
+- [A.Sai Ratna Varshita](https://gitlab.com/varshita.andvr)
 
