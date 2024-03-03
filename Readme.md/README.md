@@ -30,9 +30,15 @@ The "Day to Day Student Feedback System" is a web-based application designed to 
 
 ## Installation
 
+## Cloning the Repository
+
+1. Clone repository link:https://gitlab.com/varshita.andvr/project
+
+To clone this repository, use the following command:  git clone git@gitlab.com:Your-username/your-repository.git
+
 ## Install dependencies:
 
-To execute the provided Python code successfully, you would need to install several dependencies. Here's a list of installations required:
+2. To execute the provided Python code successfully, you would need to install several dependencies. Here's a list of installations required:
 
 -  **Python**: Ensure you have Python installed. You can download it from [here](https://www.python.org/downloads/).
 
@@ -63,11 +69,11 @@ This project is licensed under the [MIT License](https://gitlab.com/varshita.and
 
 ## Contributors  
 
-- [D.Krishna Madhumita](https://gitlab.com/varshita.andvr)
+- [D.Krishna Madhumita](https://gitlab.com/krishnamadhumitadutta)
 
-- [Ch.Ranga Harika](https://gitlab.com/varshita.andvr)
+- [Ch.Ranga Harika](https://gitlab.com/harikaa.ch22)
 
-- [G. Nooka Ratnam](https://gitlab.com/varshita.andvr)
+- [G. Nooka Ratnam](https://gitlab.com/nookaratnamginjala123)
 
 - [G. Niharika](https://gitlab.com/varshita.andvr)
 
