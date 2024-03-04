@@ -1,6 +1,6 @@
 import sqlite3
 # Create a connection to the database (or create it if it doesn't exist)
-conn = sqlite3.connect('feed6.db')
+conn = sqlite3.connect('feed7.db')
 c = conn.cursor()
 # Create a table for faculty login information
 c.execute('''CREATE TABLE IF NOT EXISTS faculty (
@@ -20,7 +20,7 @@ c.execute('''CREATE TABLE IF NOT EXISTS feedback (
 
 # Insert subject information for specific student IDs
 c.execute("INSERT INTO student_subjects (student_id, subjects) VALUES (?, ?)", ('22B01A4229', 'DWDM, WAD, SE, UHV, CN'))
-c.execute("INSERT INTO student_subjects (student_id, subjects) VALUES (?, ?)", ('22B01A4575', 'TOC, DSF,DAA,DBMS,UHV'))
+c.execute("INSERT INTO student_subjects (student_id, subjects) VALUES (?, ?)", ('22B01A4575', 'TOC, DSF,DAA, DBMS,UHV'))
 
     # Insert some sample data for faculty
 c.execute("INSERT INTO faculty (faculty_id, password) VALUES (?, ?)", ('SVECW101', 'Vishnu'))

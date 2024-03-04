@@ -34,7 +34,7 @@ The "Day to Day Student Feedback System" is a web-based application designed to 
 
 1. Clone repository link:https://gitlab.com/varshita.andvr/project
 
-To clone this repository, use the following command:  git clone git@gitlab.com:Your-username/your-repository.git
+To clone this repository, use the following command: git clone git@gitlab.com:Your-username/your-repository.git
 
 ## Install dependencies:
 

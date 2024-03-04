@@ -299,5 +299,3 @@ root.geometry('1200x600+120+80')
 root.title('ClassPulse')
 home = Home(root)
 root.mainloop()
-
-
